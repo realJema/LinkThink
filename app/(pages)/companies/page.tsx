@@ -1,4 +1,3 @@
-'use client'
 export const metadata = {
   title: 'Glimpse - Business Ideas',
   description: 'Get inspired by business ideas',

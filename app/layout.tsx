@@ -34,7 +34,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} ${architects_daughter.variable} font-inter antialiased dark:bg-gray-900 tracking-tight`}>
-          <AuthContextProvider>
             <div className="flex flex-col min-h-screen overflow-hidden">
         <ThemeProvider attribute="class">
               <Header />
@@ -42,7 +41,6 @@ export default function RootLayout({
               <Banner />
         </ThemeProvider>
             </div>
-          </AuthContextProvider>
       </body>
     </html>
   )

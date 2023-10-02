@@ -1,4 +1,3 @@
-'use client'
 import signIn from "@/app/firebase/signin"; 
 import { useRouter } from 'next/navigation'
 import { useState } from "react";
