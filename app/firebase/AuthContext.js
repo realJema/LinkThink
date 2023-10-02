@@ -1,9 +1,10 @@
 'use client'
 import {
-    onAuthStateChanged,
     getAuth,
-    signOut,  
     getFirestore,
+    signInWithPopup,
+    signOut,
+    onAuthStateChanged,
 } from 'firebase/auth';
 import firebase_app from '@/app/firebase/config';
 import { useState, useEffect, createContext, useContext } from 'react';
@@ -21,24 +22,32 @@ export const AuthContextProvider = ({
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (user) => {
-            if (user) {
-                setUser(user);
-                window.localStorage.setItem("glimpseData", JSON.stringify(user)); 
-            } else {
-                setUser(null);
-                window.localStorage.removeItem("glimpseData"); 
-            }
-            setLoading(false);
-        });
+    
+  const googleSignIn = () => {
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth, provider);
+  };
 
-        return () => unsubscribe();
-    }, []);
+  const logOut = () => {
+    signOut(auth);
+  };
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+      setLoading(false); 
+    });
+    return () => unsubscribe();
+  }, [user]);
 
     return (
-        <AuthContext.Provider value={{ user }}>
+        <AuthContext.Provider  value={{ user, googleSignIn, logOut }}>
             {loading ? <div>Loading...</div> : children}
         </AuthContext.Provider>
     );
 };
+
+
+export const UserAuth = () => {
+    return useContext(AuthContext);
+  };

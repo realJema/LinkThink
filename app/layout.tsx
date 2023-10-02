@@ -1,8 +1,9 @@
+'use client'
 import './css/style.css'
 
 import { Inter, Architects_Daughter } from 'next/font/google'
-
-import { AuthContextProvider } from "@/app/firebase/AuthContext"; 
+import { AuthContextProvider } from "@/app/firebase/AuthContext";
+import { ThemeProvider } from "next-themes";
 
 import Header from '@/components/ui/header'
 import Banner from '@/components/banner'
@@ -32,16 +33,17 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${architects_daughter.variable} font-inter antialiased bg-gray-900 text-gray-200 tracking-tight`}>
-        <AuthContextProvider>
-        <div className="flex flex-col min-h-screen overflow-hidden">
-          <Header />
-          {children}
-          <Banner />
-        </div>
-        </AuthContextProvider>
+      <body className={`${inter.variable} ${architects_daughter.variable} font-inter antialiased dark:bg-gray-900 tracking-tight`}>
+          <AuthContextProvider>
+            <div className="flex flex-col min-h-screen overflow-hidden">
+        <ThemeProvider attribute="class">
+              <Header />
+              {children}
+              <Banner />
+        </ThemeProvider>
+            </div>
+          </AuthContextProvider>
       </body>
     </html>
   )
 }
- 

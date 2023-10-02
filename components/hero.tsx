@@ -4,8 +4,8 @@ import Image from 'next/image'
 
 export default function Hero(props) {
   let title = props.title;
-  let coverImage = props.coverImage;
-  let name = props.name;
+  let image = props.image;
+  let email = props.email;
   let descr = props.descr;
   let pp = props.pp;
   let role = props.role;
@@ -27,26 +27,26 @@ export default function Hero(props) {
         </div>
 
         {/* Hero content */}
-        <div className="relative pt-32 pb-10 md:pt-40 md:pb-16">
+        <div className="relative pt-10 pb-10 md:pt-24 md:pb-16">
 
           {/* Section header */}
-          <div className="max-w-3xl mx-auto text-center  ">
-            <h1 className="h1 mb-4 capitalize" data-aos="fade-up">{title}</h1>
-            <p className="text-xl text-gray-400 mb-8" data-aos="fade-up" data-aos-delay="200">{name}</p>
+          <div className="max-w-3xl mx-auto">
+            <h1 className="h4 text-left mb-1 capitalize" data-aos="fade-up">{title}</h1>
+            <p className="text-md text-gray-600 mb-8" data-aos="fade-up" data-aos-delay="200">{email}</p>
           </div>
  
-          {coverImage === '' ? 
+          {image === '' ? 
           ''
           :
-          <div className="relative inline-flex flex-col w-full mb-4">
-            <Image className="object-cover w-full h-auto" src={coverImage} width={1920} height={1080} alt="Modal video thumbnail" />
+          <div className="relative inline-flex items-center flex-col w-full mb-4">
+            <Image className="object-cover w-4/5 h-[40rem] rounded-md" src={image} width={1920} height={1080} alt="Modal video thumbnail" />
           </div>
 
           }
 
         </div>
 
-        <p className="max-w-3xl  mx-auto text-center text-xl text-gray-400 mb-8" data-aos="fade-up" data-aos-delay="200">{descr}</p>
+        <p className="max-w-3xl  mx-auto text-left text-xl mb-8" data-aos="fade-up" data-aos-delay="200">{descr}</p>
       </div>
     </section>
   )
